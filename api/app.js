@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const expressValidator = require('express-validator');
 
 
 /* All Routing File Import */
@@ -14,6 +15,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
+app.use(expressValidator()); // For DATA VAlidation
 
 
 /* Connect to DB */
