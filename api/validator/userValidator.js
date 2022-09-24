@@ -12,6 +12,7 @@ exports.userSignupValidator = (req, res, next) => {
 
 
     req.check("password", "Password is Required").notEmpty();
+    
     req.check("password")
         .isLength({
             min: 6
@@ -27,6 +28,6 @@ exports.userSignupValidator = (req, res, next) => {
         const firstError = errors.map(error => error.msg)[0];
         return res.status(400).json({error: firstError });
     }
-
+    
     next();
 };

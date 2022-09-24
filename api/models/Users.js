@@ -52,6 +52,11 @@ userSchema.virtual('password')
 
 // This methods will encrypt the Password to HASH
 userSchema.methods = {
+    // For MATCHING the Given password with the hashed Password
+    authenticate: function(pass) {
+        return this.encryptPassword(pass) === this.hashedPassword;
+    },
+
     encryptPassword: function (password) {
         if (!password) return '';
 
