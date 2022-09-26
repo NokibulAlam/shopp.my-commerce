@@ -2,12 +2,12 @@ const User = require('../models/Users');
 const jwt = require('jsonwebtoken');
 const expressJWT = require("express-jwt");
 
+
 /* Internal Import */
 const {errorHandler} = require('../helper/dbErrorHandle');
 
 
-
- /* Check if the User is AUTHENTICATED */
+/* Check if the User is AUTHENTICATED */
 exports.isAuth = (req, res, next) => {
     // req.profile = checking if there a value exist
     // req.auth = checking if the value is Authenticate
@@ -101,6 +101,17 @@ exports.postSignIn = (req, res, next) => {
             user: {
                 _id, name, email, role
             }
-        })
+        });
     });
 };
+
+
+/* SignOut Module */
+exports.getSignOut = (req, res, next) => {
+
+    res.clearCookie('token');
+
+    return res.json({
+        message: "Signout Successfull"
+    });
+}
