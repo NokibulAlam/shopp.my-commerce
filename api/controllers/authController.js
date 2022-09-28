@@ -52,7 +52,7 @@ exports.postSignUp = (req, res, next) => {
     user.save((err, result) => {
         if (err) {
             return res.status(400).json({
-                error: errorHandler(err),
+                error: errorHandler(err), //imported
             });
         } else {
             /* After Saving Value need to set this field Undifined */

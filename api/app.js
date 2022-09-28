@@ -5,9 +5,12 @@ require('dotenv').config();
 const expressValidator = require('express-validator');
 const cookieParser = require('cookie-parser');
 
+
 /* All Routing File Import */
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/userRoute');
+const categoryRouter = require('./routes/categoryRoute');
+
 
 /* MIDDLEWARE functions */
 const app = express();
@@ -17,6 +20,7 @@ app.use(express.json());
 app.use(cors());
 app.use(expressValidator()); // For DATA VAlidation
 app.use(cookieParser()); // For Saving JWT COOKIES
+
 
 
 /* Connect to DB */
@@ -32,9 +36,12 @@ mongoose.connect(process.env.DATABASE_URL, {
 });
 
 
+
 /* Routing */
 app.use('/api', authRouter);
 app.use('/api', userRouter);
+app.use('/api', categoryRouter);
+
 
 
 /* For Running the APP */
