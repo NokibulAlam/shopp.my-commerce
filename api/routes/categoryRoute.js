@@ -7,10 +7,22 @@ const userController = require('../controllers/userController.js');
 const categoryController = require('../controllers/categoryController.js');
 
 
+// Create a Category route
 router.route('/category/create/:userId')
     .post(authController.requireSignIn, authController.isAuth, authController.isAdmin, categoryController.create);
 
+// Update & Delete Category Route
+router.route('/category/:categoryId/:userId')
+    .put(authController.requireSignIn, authController.isAuth, authController.isAdmin, categoryController.update)
+    .delete(authController.requireSignIn, authController.isAuth, authController.isAdmin, categoryController.delete);
+
+
 // Find User by ID
 router.param('userId', userController.userById);
+
+
+// Find Category by ID
+router.param('categoryId', categoryController.categoryById);
+
 
 module.exports = router;

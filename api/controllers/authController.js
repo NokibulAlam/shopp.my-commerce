@@ -55,7 +55,7 @@ exports.postSignUp = (req, res, next) => {
                 error: errorHandler(err), //imported
             });
         } else {
-            /* After Saving Value need to set this field Undifined */
+            /* After Saving Value need to set this field Undefined */
             user.salt = undefined;
             user.hashedPassword = undefined;
 
