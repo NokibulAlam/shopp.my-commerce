@@ -13,7 +13,7 @@ exports.create = (req, res, next) => {
             });
         }
         else{
-            return res.json({result});
+            return res.json(result);
         }
     });
 };
@@ -46,7 +46,7 @@ exports.update = (req, res, next) => {
             });
         }
         else{
-            return res.json({result});
+            return res.json(result);
         }
     });
 };
@@ -65,5 +65,27 @@ exports.delete = (req, res, next) => {
         else{
             return res.json({message: "Category Delete Successful"});
         }
-    })
-}
+    });
+};
+
+// Read a Single Category Data
+exports.readCategory = (req, res, next) => {
+    return res.json( req.category);
+};
+
+
+// Read a All Category Data
+exports.readAllCategory = (req, res, next) => {
+
+    Category.find()
+        .exec((err, result) => {
+            if(err){
+                return res.status(400).json({
+                    error: errorHandler(err),
+                });
+            }
+            else {
+                return res.json(result);
+            }
+        })
+};

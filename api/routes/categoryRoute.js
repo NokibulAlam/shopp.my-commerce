@@ -17,6 +17,18 @@ router.route('/category/:categoryId/:userId')
     .delete(authController.requireSignIn, authController.isAuth, authController.isAdmin, categoryController.delete);
 
 
+// Read a Single Category Data
+router.route('/category/:categoryId')
+    .get(categoryController.readCategory);
+
+
+
+// Read a All Category Data
+router.route('/categories')
+    .get(categoryController.readAllCategory);
+
+ 
+    
 // Find User by ID
 router.param('userId', userController.userById);
 
