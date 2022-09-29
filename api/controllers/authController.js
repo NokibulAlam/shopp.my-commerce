@@ -45,8 +45,6 @@ exports.requireSignIn = expressJWT({
 
 /* SignUp Module */
 exports.postSignUp = (req, res, next) => {
-    // console.log("In Sign-up");
-
     const user = new User(req.body);
 
     user.save((err, result) => {
@@ -91,7 +89,7 @@ exports.postSignIn = (req, res, next) => {
         }
 
         // GET New Token
-        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET); //this will give us a token
+        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET); //this will give us a token on behalf of the FIRST PARAMETER
         res.cookie('token', token, {expire: new Date() + 9999}); // Save the Token in Cookie and Expire after the given time
         
         const {_id, name, email, role} = user;

@@ -14,9 +14,11 @@ const userValidator = require('../validator/userValidator');
 router.route('/signup')
     .post(userValidator.userSignupValidator, authController.postSignUp);
 
+    
 /* User Signin Routing */
 router.route('/signin')
     .post(authController.postSignIn)
+
 
 /* User SignOut Routing */
 router.route('/signout')
