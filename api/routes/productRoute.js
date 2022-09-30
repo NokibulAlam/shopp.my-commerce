@@ -38,6 +38,10 @@ router.route('/products/categories')
     .get(productController.getCategories);
 
 
+// Get Related Product
+router.route('/products/related/:productId')
+    .get(productController.getRelatedProducts);
+
 
 // Find Product by ID
 router.param('productId', productController.productById);
