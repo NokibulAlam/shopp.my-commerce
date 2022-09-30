@@ -17,6 +17,7 @@ router.route('/category/:categoryId/:userId')
     .delete(authController.requireSignIn, authController.isAuth, authController.isAdmin, categoryController.delete);
 
 
+    
 // Read a Single Category Data
 router.route('/category/:categoryId')
     .get(categoryController.readCategory);

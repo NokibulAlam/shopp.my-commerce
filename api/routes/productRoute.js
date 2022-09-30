@@ -15,14 +15,19 @@ router.route('/product/create/:userId')
 // Product Update Route
 router.route('/product/:productId/:userId')
     .put(authController.requireSignIn, authController.isAuth, authController.isAdmin, productController.update)
-    .delete(authController.requireSignIn, authController.isAuth, authController.isAdmin, productController.delete)
+    .delete(authController.requireSignIn, authController.isAuth, authController.isAdmin, productController.delete);
+
+
+// Read Single Data
+router.route('/product/:productId')
+    .get(productController.readProduct)
 
 // Find Product by ID
 router.param('productId', productController.productById);
 
+
 // Find User by ID
 router.param('userId', userController.userById);
-
 
 
 module.exports = router;

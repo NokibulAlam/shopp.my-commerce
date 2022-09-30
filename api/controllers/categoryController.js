@@ -33,6 +33,7 @@ exports.categoryById = (req, res, next, id) => {
         });
 };
 
+
 // Update the Category
 exports.update = (req, res, next) => {
     const category = req.category;
@@ -67,6 +68,7 @@ exports.delete = (req, res, next) => {
         }
     });
 };
+
 
 // Read a Single Category Data
 exports.readCategory = (req, res, next) => {

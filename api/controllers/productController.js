@@ -133,3 +133,10 @@ exports.delete = (req, res, next) => {
         }
     });
 };
+
+
+// Read Single Product
+exports.readProduct = (req, res, next) => {
+    req.product.photo = undefined; // Will handle later; because Photo is in Buffer Data
+    return res.json( req.product );
+}
