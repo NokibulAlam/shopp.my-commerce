@@ -20,7 +20,24 @@ router.route('/product/:productId/:userId')
 
 // Read Single Data
 router.route('/product/:productId')
-    .get(productController.readProduct)
+    .get(productController.readProduct);
+
+
+// Read All Product Data
+router.route('/products')
+    .get(productController.readAllProduct);
+
+
+// Get the Product Photo
+router.route('/product/photo/:productId')
+    .get(productController.getPhoto);
+
+
+// Get the Product Photo
+router.route('/products/categories')
+    .get(productController.getCategories);
+
+
 
 // Find Product by ID
 router.param('productId', productController.productById);
