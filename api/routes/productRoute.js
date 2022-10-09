@@ -33,7 +33,7 @@ router.route('/product/photo/:productId')
     .get(productController.getPhoto);
 
 
-// Get the Product Photo
+// Get All Categoris
 router.route('/products/categories')
     .get(productController.getCategories);
 
@@ -41,6 +41,11 @@ router.route('/products/categories')
 // Get Related Product
 router.route('/products/related/:productId')
     .get(productController.getRelatedProducts);
+
+
+// Product Search Route
+router.route('/product/by/search')
+    .get(productController.searchProduct);
 
 
 // Find Product by ID

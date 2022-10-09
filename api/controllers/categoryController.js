@@ -5,9 +5,10 @@ const {errorHandler} = require('../helper/dbErrorHandle');
 
 exports.create = (req, res, next) => {
     const category = new Category(req.body);
-
+    console.log(category);
     category.save( (err, result) => {
         if(err) {
+            console.log(err);
             return res.status(400).json({
                 error: errorHandler(err),
             });
