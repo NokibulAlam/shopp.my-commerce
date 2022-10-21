@@ -207,6 +207,63 @@ exports.getRelatedProducts = (req, res, next) => {
 
 
 // Product Search
+exports.filterProduct = (req, res, next) => {
+    let order = req.body.order ? req.body.order : "asc";
+    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+    let limit = req.body.limit ? req.body.limit : 80;
+
+    let findArgs = {};
+
+    for (let item in req.body.filters) {
+        if (req.body.filters[item].length > 0) {
+            if (item === "price") {
+                findArgs[item] = {
+                    $gte: req.body.filters[item][0],
+                    $lte: req.body.filters[item][1],
+                };
+            }
+            else {
+                findArgs[item] = req.body.filters[item];
+            }
+        }
+    }
+    Product.find(findArgs)
+        .select("-photo")
+        .populate("category")
+        .sort([[sortBy, order]])
+        .limit(limit)
+        .exec((err, data) => {
+            if (err) {
+                return res.status(400).json({
+                    error: "Product Not Found",
+                });
+            }
+            else {
+                return res.json({
+                    size: data.length,
+                    data,
+                });
+            }
+        });
+};
+
+
+// Search Product from Search bar
+
 exports.searchProduct = (req, res, next) => {
-    
-}
+    const query = {};
+
+    if(req.query.search) {
+        query.name = { $regex: req.query.search, $option: "i"};
+        if(req.query.category && req.query.category !== "All") query.category = req.query.category;
+    }
+
+    Product.find(query, (err, result) => {
+        if(err) {
+            return res.status(400).json({
+                error: errorHandler(err),
+            });
+        }
+        return res.json(result);
+    });
+};
