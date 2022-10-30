@@ -254,7 +254,7 @@ exports.searchProduct = (req, res, next) => {
     const query = {};
 
     if(req.query.search) {
-        query.name = { $regex: req.query.search, $option: "i"};
+        query.name = { $regex: req.query.search, $options: "i"};
         if(req.query.category && req.query.category !== "All") query.category = req.query.category;
     }
 

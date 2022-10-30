@@ -43,17 +43,12 @@ router.route('/products/related/:productId')
     .get(productController.getRelatedProducts);
 
 
-// Product Search Route
+// Product Filter Route
 router.route('/product/by/search')
     .get(productController.filterProduct);
 
-
 // Product Search Route
-router.route('/product/by/search')
-    .get(productController.filterProduct);
-
-
-router.route('/product/search')
+router.route('/products/search')
     .get(productController.searchProduct);
 
 
