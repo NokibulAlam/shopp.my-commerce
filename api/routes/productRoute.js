@@ -45,7 +45,7 @@ router.route('/products/related/:productId')
 
 // Product Filter Route
 router.route('/product/by/search')
-    .get(productController.filterProduct);
+    .post(productController.filterProduct);
 
 // Product Search Route
 router.route('/products/search')
